@@ -13,6 +13,7 @@ import java.util.Set;
 
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
+import static org.hamcrest.collection.IsIn.isIn;
 import static ru.yandex.qatools.processors.matcher.gen.util.MatchersGenProperties.props;
 
 /**
@@ -45,7 +46,7 @@ public class GeneratorHelper {
                 .collect(toList());
         return annotations.stream()
                 .map(anno -> (TypeElement) anno)
-                .filter(anno -> toProcess.contains(anno))
+                .filter(anno -> isIn(toProcess).matches(anno))
                 .collect(toSet());
     }
 
